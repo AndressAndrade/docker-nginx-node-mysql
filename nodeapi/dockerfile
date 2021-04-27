@@ -4,6 +4,8 @@ RUN apk add bash
 
 WORKDIR /usr/scr/app
 
+COPY . /usr/scr/app
+
 RUN npm install 
 
 CMD ["npm", "start"]

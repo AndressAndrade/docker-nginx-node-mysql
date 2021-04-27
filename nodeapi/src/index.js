@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
     const query = `SELECT * FROM modulos`;
     connection.query(query, function (error, results) {
         // When done with the connection, release it.
-        connection.end();
+        connection.resume();
      
         // Handle error after the release.
         if (error) {
@@ -39,6 +39,7 @@ app.get('/', (req, res) => {
             texto += `<li>${element.name}</li>`;
         });
         texto += '</ul>';
+        res.charset = 'utf-8';
         return res.status(200).send(texto);
         
       });
