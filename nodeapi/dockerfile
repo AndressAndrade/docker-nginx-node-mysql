@@ -1,0 +1,12 @@
+FROM node:15.14.0-alpine3.10
+
+RUN apk add bash
+
+WORKDIR /usr/scr/app
+
+CMD ["npm", "start"]
+
+# docker build -t andressandrade/nodeapi .
+# docker network connect nodeapi mysql
+# docker run --name nodeapi -v "$(pwd):/usr/scr/app" -it --network nodeapi -p 3000:3000 andressandrade/nodeapi bash
+# docker run --name nodeapi -v "$(pwd):/usr/scr/app" -d --network nodeapi andressandrade/nodeapi   
