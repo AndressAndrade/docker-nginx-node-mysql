@@ -20,3 +20,6 @@ Desafio - Configurar um container nginx para que ao ser acessado, mostre os dado
 
 ## Resultado
 
+<p align="center">
+  <img alt="Resultado" src="images/resultado.png" width="80%">
+</p>
