@@ -7,4 +7,9 @@ create table if not exists modulos (
     PRIMARY KEY (id)
 );
 
-insert into modulos(name) values('Docker'), ('Comunicação'), ('RabbitMQ'), ('Apache Kafka');
+set character_set_client = utf8;
+set character_set_connection = utf8;
+set character_set_results = utf8;
+set collation_connection = utf8_general_ci;
+
+insert into modulos (name) values ('Docker'), ('Comunicação'), ('RabbitMQ'), ('Apache Kafka');
