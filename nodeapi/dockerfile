@@ -4,13 +4,8 @@ RUN apk add bash
 
 WORKDIR /usr/scr/app
 
-COPY . /usr/scr/app
+COPY . .
 
 RUN npm install 
 
-CMD ["npm", "start"]
-
-# docker build -t andressandrade/nodeapi .
-# docker network connect nodeapi mysql
-# docker run --name nodeapi -v "$(pwd):/usr/scr/app" -it --network nodeapi -p 3000:3000 andressandrade/nodeapi bash
-# docker run --name nodeapi -v "$(pwd):/usr/scr/app" -d --network nodeapi andressandrade/nodeapi   
+ENTRYPOINT ["npm", "start"] 

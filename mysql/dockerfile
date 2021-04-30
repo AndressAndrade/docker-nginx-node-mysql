@@ -1,13 +1,5 @@
 FROM mysql:5.7.22
 
-RUN printf '%s\n' 'mysql-community-server mysql-community-server/root-pass password your_password' | debconf-set-selections && \
-    printf '%s\n' 'mysql-community-server mysql-community-server/re-root-pass password your_password' | debconf-set-selections && \
-    apt -y install mysql-server && \
-    rm -rf /var/lib/mysql/*   
+ENV MYSQL_ROOT_PASSWORD=root
 
-CMD ["--innodb-use-native-aio=0"]
-
-# docker run -d --rm --name mysql -e MYSQL_ROOT_PASSWORD=root MYSQL_DATABASE=fullcycle -v $(pwd)/data:/var/lib/mysql  andressandrade/mysql
-# docker exec -it mysql bash
-# /etc/init.d/mysql start
-# mysql -uroot -p
+COPY ./insert.sql /docker-entrypoint-initdb.d/
