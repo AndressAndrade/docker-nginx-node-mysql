@@ -2,7 +2,7 @@
 
 docker network create nodeapi
 
-docker run -d --rm --name mysql --network nodeapi andressandrade/mysql
+docker run --rm --name mysql -d  --network nodeapi andressandrade/mysql
 
 docker run --rm --name nodeapi -d --network nodeapi andressandrade/nodeapi  
 
