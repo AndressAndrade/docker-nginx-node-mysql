@@ -8,8 +8,11 @@ Desafio - Configurar um container nginx para que ao ser acessado, mostre os dado
 chmod +x start.sh
 sudo ./start.sh
 ```
+OU
+```bash
+docker-compose up -d
+```
 
-- Acesse http://localhost:8080
 
 ## Resultado
 

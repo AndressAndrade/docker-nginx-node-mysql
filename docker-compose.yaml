@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+    mysql:
+        image: mysql:5.7.22
+        command: --innodb-use-native-aio=0
+        container_name: mysql
+        networks: 
+            - nodemysql
+        expose:    
+            - 3306
+        volumes:
+            - ./dbdata:/var/lib/mysql
+            - ./mysql:/docker-entrypoint-initdb.d
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+    nodeapi:
+        image: andressandrade/nodeapi:latest
+        container_name: nodeapi
+        command: sh -c "dockerize -wait tcp://mysql:3306 -timeout 20s /docker-entrypoint"
+        networks: 
+            - nodemysql
+            - nodenginx
+        depends_on: 
+            - mysql
+        expose: 
+            - 3000
+    nginx:
+        image: andressandrade/nginx:latest
+        container_name: nginx
+        ports: 
+            - "8000:80"
+        networks: 
+            - nodenginx
+        depends_on: 
+            - nodeapi
+        restart: always
+networks:
+    nodemysql:
+        driver: bridge 
+    nodenginx:
+        driver: bridge 
